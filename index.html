@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>demo cookie</title>
+    </head>
+    <body>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+        <script src="js.cookie.js"></script>
+        <script>
+            window.onload = function() {
+                //Busco la cookie si existe.
+                var popup = Cookies.get('popup');
+                console.log(popup);
+                //Si la cookie existe no se realiza nada
+                if(popup){
+                    console.log('La cookie ya estaba creada.!');
+                    return;
+                }
+                //Si la cookie no existe, se crea y se muestra un mensaje
+                else{
+                    var date = new Date();
+                    //Para que expire en 30 segundos
+                    date.setTime(date.getTime() + (30 * 1000));  
+                    //Para que expire en 30 minutos
+                    //date.setTime(date.getTime() + (1800 * 1000));
+                    //Creo una cookie llamada popup y asigno un valor 1 con expiracion de "X" tiempo, indicado por date.
+                    Cookies.set('popup', 1,{ expires: date }); 
+                    alert('SE HA CREADO UN COOKIE, vence en: ' + date);
+                    console('SE HA CREADO UN COOKIE, vence en: ' + date);
+                }
+            };
+        </script>   
+    </body>
+</html>
